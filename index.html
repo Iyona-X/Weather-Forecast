@@ -5,35 +5,46 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="src/style.css">
-        <title>weather forecast app</title>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <title>Weather Forecast App</title>
     </head>
 
     <body>
         <div class="container">
-            <div class="search-bar">
-                <input type="text" placeholder="Enter a city..">
-                <button>Search</button>
-            </div>
+            <form class="search-bar" id="search-form">
+                <input type="text" placeholder="Enter a city.." id="search-form-input" required>
+                <button type="submit">Search</button>
+            </form>
 
             <div class="weather-info">
-                <h1>Paris</h1>
-                <p>Tuesday 14.49, scattered clouds</p>
-                <br>
-                <p>Humidity: <span>66%</span>, Wind: <span>3.13km/h</span></p>
-            </div>
+                <h1 id="city"></h1>
+                <div class="weather-details">
+                    <p>
+                        <span id="time"></span>,
+                        <span id="description"></span>
+                    </p>
+                    <p>
+                        Humidity: <strong><span id="humidity"></span>%</strong>,
+                        Wind: <strong><span id="wind-speed"></span>km/h</strong>
+                    </p>
+                </div>
 
-            <div class="temperature-display">
-                <div class="weather-icon">☀️</div>
-                <div class="temperature">12<sup>°C</sup></div>
+                <div class="temperature-display">
+                    <span id="icon"></span>
+                    <div class="temperature-wrapper">
+                        <span id="temperature" class="temperature"></span><sup>°C</sup>
+                    </div>
+                </div>
             </div>
 
             <div class="footer">
                 Coded by
                 <a href="https://github.com/Iyona-X/" target="_blank">Iyona Ximba</a> on
-                <a href="https://github.com/Iyona-X/weather-forecast" target="_blank">GitHub</a> and website hosted
-                <a href="https://app.netlify.com/projects/weather-shecodes-fc/deploys" target="_blank">on netlify</a>
+                <a href="https://github.com/Iyona-X/weather-forecast" target="_blank">GitHub</a> and hosted
+                <a href="https://app.netlify.com/projects/weather-shecodes-fc/deploys" target="_blank">on Netlify</a>
             </div>
         </div>
+        <script src="index.js"></script>
     </body>
 
 </html>
