@@ -5,7 +5,7 @@
 }
 
 body {
-    font-family:'Segoe UI', Arial, sans-serif;
+    font-family: 'Segoe UI', Arial, sans-serif;
     background: white;
     min-height: 100vh;
     display: flex;
@@ -90,11 +90,17 @@ body {
     gap: 20px;
 }
 
+.weather-icon,
 .weather-app-icon {
+    font-size: 64px;
     width: 80px;
     height: 80px;
 }
 
+.temperature-wrapper {
+    display: flex;
+    align-items: flex-start;
+}
 
 .temperature {
     font-size: 80px;
@@ -127,4 +133,3 @@ body {
 .footer a:hover {
     text-decoration: underline;
 }
-

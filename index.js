@@ -20,8 +20,8 @@ function formatDate(date) {
 }
 
 function refreshWeather(response) {
-  console.log(response.data); // Keep this to see the data in console
-  
+  console.log(response.data); // For debugging
+
   let temperatureElement = document.querySelector("#temperature");
   let temperature = response.data.temperature.current;
   let cityElement = document.querySelector("#city");
@@ -32,30 +32,27 @@ function refreshWeather(response) {
   let date = new Date(response.data.time * 1000);
   let iconElement = document.querySelector("#icon");
 
-  // Update all elements with the API data
   cityElement.innerHTML = response.data.city;
   timeElement.innerHTML = formatDate(date);
   descriptionElement.innerHTML = response.data.condition.description;
-  humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
-  windSpeedElement.innerHTML = `${response.data.wind.speed}km/h`;
+  humidityElement.innerHTML = response.data.temperature.humidity;
+  windSpeedElement.innerHTML = response.data.wind.speed;
   temperatureElement.innerHTML = Math.round(temperature);
-  iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="weather-app-icon" />`;
-}
 
-function searchCity(city) {
-  let apiKey = "ce54f8031f66eoe3bt1a9b3dc47a23f4";
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}`;
-  axios.get(apiUrl).then(refreshWeather);
+  if (response.data.condition.icon_url) {
+    iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="weather-app-icon" alt="Weather icon" />`;
+  } else {
+    iconElement.innerHTML = "";
+  }
 }
 
 function handleSearchSubmit(event) {
   event.preventDefault();
   let searchInput = document.querySelector("#search-form-input");
-  searchCity(searchInput.value);
+  searchCity(searchInput.value, refreshWeather);
 }
 
 let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearchSubmit);
 
-// Load Paris weather on page load
-searchCity("Paris");
+searchCity("Paris", refreshWeather);
